@@ -1,0 +1,22 @@
+---
+- name: Creating users 
+  hosts: all
+  tasks:
+   - name: Creating Multiple users
+     user: 
+      name: "{{item.a}}"
+      password: "{{item.b}}"
+      home: "{{item.c}}"
+      shell: "{{item.d}}"
+     with_items:
+      - {a: sai,b: intell1,c: /home/sai,d: /bin/bash} 
+      - {a: ravi,b: intell2,c: /home/ravi,d: /bin/bash}      
+   - name: creating directories and files for users
+     file:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+     with_items:
+      - {a: /home/sai/file1,b: touch} 
+      - {a: /home/ravi/anu,b: directory} 
+...        
+

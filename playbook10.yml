@@ -1,0 +1,14 @@
+---
+- name: uninstalling softwares
+  hosts: all
+  tasks:
+   - name: uninstalling group softwares
+     apt: 
+      name: "{{item}}"
+      state: latest
+      update_cache: yes
+     with_items:
+      - git
+      - htop
+      - tree
+...  

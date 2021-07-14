@@ -1,0 +1,14 @@
+---
+- name: Using ansible loops 
+  hosts: all
+  tasks:
+   - name: installing softwares and uninstalling software
+     apt:
+      name: "{{item.a}}"
+      state: "{{item.b}}"
+      update_cache: "{{item.c}}"
+     with_items:
+      - {a: git,b: present,c: yes}
+      - {a: tree,b: absent,c: no}
+      - {a: htop,b: latest,c: yes}
+...  

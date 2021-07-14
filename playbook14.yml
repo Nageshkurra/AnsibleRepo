@@ -1,0 +1,9 @@
+---
+- name: copying dir
+  hosts: all
+  tasks:
+   - name: copying 
+     copy: 
+      src: /var/tmp/
+      dest: /tmp/
+...

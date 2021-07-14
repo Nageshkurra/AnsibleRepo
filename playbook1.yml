@@ -1,0 +1,15 @@
+---
+- name: Copying files 
+  hosts: all 
+  tasks:
+   - name: 
+     copy:    
+      content: 'This file owned by nagesh not accessed by any one \n'
+      dest: /var/tmp/file1
+      owner: root
+      group: root
+      mode: 774 
+      backup: yes
+
+
+...

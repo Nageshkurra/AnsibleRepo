@@ -1,0 +1,14 @@
+---
+- name: Playscope variables 
+  hosts: all
+  vars:
+   - a: tree 
+   - b: present
+   - c: no
+  tasks:
+   - name: Installing a Package 
+     apt:
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"
+...

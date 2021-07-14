@@ -1,0 +1,25 @@
+---
+- name: Installing softwares 
+  hosts: all
+  tasks:
+   - name: Installingtree 
+     apt:
+      name: tree 
+      state: present
+      update_cache: yes 
+   - name:  installingapache2
+     apt:
+      name: apache2
+      state: present
+      update_cache: no
+   - name: installinggit
+     apt:
+      name: git 
+      state: present
+      update_cache: no
+   - name: Installingmaveen
+     apt:
+      name: maveen
+      state: present
+      update_cache: yes 	  
+...

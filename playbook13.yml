@@ -1,0 +1,11 @@
+---
+- name: Downloading  docket url
+  hosts: all
+  tasks:
+   - name: downloading url
+     get_url: 
+      url: https://get.docker.com 
+      dest: /home/ubuntu
+   - name: executing docker
+     shell: sh /home/ubuntu/get-docker.sh
+...

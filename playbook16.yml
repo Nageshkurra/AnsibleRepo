@@ -1,0 +1,36 @@
+---
+- name: error handle 
+  hosts: all
+  gather_facts: false
+  tasks:
+   - block:       
+     - name: installing tomcat7
+       apt:
+        name: tomcat7
+        state: present
+        update_cache: yes
+       tags: tomcat7_install  
+     rescue:
+      - name: installing tomcat8
+        apt: 
+         name: tomcat8
+         state: present
+         update_cache: no
+        tags: tomcat8_install 
+     always:
+      - name: tomcat restart 
+        service: 
+         name: "{{item}}"
+         state: restarted
+        with_items:
+         - tomcat7
+         - tomcat8 
+      - name: creating users profile
+        user:
+         name: sai
+         password: intell
+         uid: 33567
+         shell: /bin/bash
+         comment: "super user"
+        tags: user_creation     
+...    

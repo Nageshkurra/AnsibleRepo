@@ -1,0 +1,11 @@
+---
+- name: Installing a Package using Global scope variable 
+  hosts: all
+  gather_facts: false
+  tasks: 
+   - name: uninstalling a git package 
+     apt:
+      name: "{{a}}"
+      state: "{{b}}"
+      update_cache: "{{c}}"
+...      

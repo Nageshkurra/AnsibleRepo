@@ -1,0 +1,31 @@
+---
+- name: Error Handling In Ansible
+  hosts: all
+  tasks: 
+   - block: 
+      - name: playbook for Tomcat 
+        apt:
+         name: "{{item.a}}"
+         state: "{{item.b}}"
+         update_cache: "{{item.c}}"
+        with_items: 
+         - {a: tomcat7,b: present,c: yes}
+     rescue:
+      - name: Play for tomcat 8 
+        apt:
+         name: "{{item.a}}"
+         state: "{{item.b}}"
+         update_cache: "{{item.c}}"
+        with_items:
+         - {a: tomcat8,b: present,c: yes}
+     always:
+      - name: Precheck
+        uri:
+         url: "{{item}}"
+         status_code: 200
+        with_items:
+         - http://172.31.45.236
+         - http://172.31.38.4
+...       
+
+                    

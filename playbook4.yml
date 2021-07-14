@@ -1,0 +1,20 @@
+---
+- name: Creating files and folders 
+  hosts: all
+  tasks: 
+   - name: creating files 
+     file:
+      name: /var/tmp/file2
+      state: touch
+   - name: Creating directories 
+     file: 
+      name: /var/tmp/tomdir
+      state: directory
+      owner: prasad
+      group: root 
+      mode: 770
+   - name: Copying content 
+     copy:
+      content: ' This user belongs to prasad user \n'
+      dest: /var/tmp/file2 
+...

@@ -1,0 +1,26 @@
+---
+- name: Configuring the apache 
+  hosts: all
+  tasks: 
+   - name: installing apache 
+     apt: 
+      name: apache2
+      state: present
+      update_cache: yes
+   - name: Editing index.html
+     copy:
+      content: 'Vidyansh First web Page' 
+      dest: /var/www/html/index.html 
+   - name: restarting service module 
+     service:
+      name: apache2 
+      state: restarted 
+   - name: Verification url 
+     uri:
+      url: "{{item}}"
+      status_code: 200
+     with_items: 
+      - http://172.31.45.236
+      - http://172.31.38.4
+...   
+

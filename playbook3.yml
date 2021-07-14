@@ -1,0 +1,12 @@
+---
+- name: Creating user Adminstration 
+  hosts: all
+  tasks:
+   - name: Creating user
+     user:
+      name: prasad
+      password: 1234
+      shell: /bin/bash
+      comment: "This user Belongs to Ryanware user"
+      home: /home/prasad 
+...

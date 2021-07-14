@@ -1,0 +1,29 @@
+---
+- name: installing software using 
+  hosts: all
+  gather_facts: false
+  tasks: 
+   - name: installin apache software
+     apt:
+      name: apache2
+      state: latest
+      update_cache: yes
+     notify: url response
+   - name: editing index file
+     file: 
+      content: "This is my Firstweb Page"
+      dest: /var/www/html/index.html
+     notify: apache restart 
+  handlers:
+   - name: apache restart
+     service: 
+      name: apache2
+      state: restarted 
+   - name: url response
+     uri:
+      url: "{{item}}"
+      status_code: 200
+     with_items:
+      - http://172.31.45.236
+      - http://172.31.38.4  
+...
